@@ -14,14 +14,13 @@ export class LoginComponent {
   constructor(private builder: FormBuilder, private toastr: ToastrService,
     private service: AuthService, private router: Router) {
       sessionStorage.clear();
-
   }
 
   userdata:any;
 
   loginform = this.builder.group({
     username: this.builder.control('', Validators.required),
-    password: this.builder.control('', Validators.required)
+    userPassword: this.builder.control('', Validators.required)
   })
 
   testmes(){
@@ -33,10 +32,10 @@ export class LoginComponent {
       this.service.Getbycode(this.loginform.value.username).subscribe(res => {
         this.userdata = res;
         console.log(this.userdata);
-        if (this.userdata.password == this.loginform.value.password) {
+        if (this.userdata.userPassword == this.loginform.value.userPassword) {
           if (this.userdata.isactive) {
             sessionStorage.setItem('username', this.userdata.id);
-            sessionStorage.setItem('userrole', this.userdata.role);
+            sessionStorage.setItem('userRole', this.userdata.role);
             this.router.navigate(['']);
           } else {
             this.toastr.warning('The account is inactive. To activate the account contact an admin.');
