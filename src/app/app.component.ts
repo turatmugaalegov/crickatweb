@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'crickatweb';
+  title = 'crickat';
+
+  buttonClicked() {
+    alert('Hallo, wie geht es dir?');
+  }
 }

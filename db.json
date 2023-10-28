@@ -1,0 +1,36 @@
+{
+  "user": [
+    {
+      "id": "admin",
+      "name": "Admin User",
+      "password": "Test123!",
+      "email": "admin@in.com",
+      "gender": "male",
+      "role": "admin",
+      "isactive": true
+    },
+    {
+      "id": "noadmin",
+      "name": "No Admin",
+      "password": "Test123!",
+      "email": "noadmin@in.com",
+      "gender": "male",
+      "role": "user",
+      "isactive": true
+    }
+  ],
+  "role": [
+    {
+      "code": "admin",
+      "name": "Admin"
+    },
+    {
+      "code": "host",
+      "name": "Host"
+    },
+    {
+      "code": "user",
+      "name": "User"
+    }
+  ]
+}
