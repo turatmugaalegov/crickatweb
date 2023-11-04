@@ -12,6 +12,11 @@ import { RegisterComponent } from './register/register.component';
 import { MaterialModule } from 'src/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
+
+import { EventService } from './data/event-service';
+import { EventlistComponent } from './eventlist/eventlist.component';
+import { EventaddComponent } from './eventadd/eventadd.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,9 @@ import { ToastrModule } from 'ngx-toastr';
     HeaderComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    EventlistComponent,
+    EventaddComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +34,10 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
