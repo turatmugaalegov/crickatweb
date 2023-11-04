@@ -4,8 +4,8 @@
     </mat-card-header>
     <mat-card-content>
         <p>
-        Hier findest du Events in deiner Nähe, die dich wirklich interessieren!<br>
-        Um die Seite zu nutzen musst du einen Account erstellen bzw. dich einloggen.
+            Hier findest du Events in deiner Nähe, die dich wirklich interessieren!<br>
+            Um die Seite zu nutzen musst du einen Account erstellen bzw. dich einloggen.
         </p>
     </mat-card-content>
 </mat-card>
@@ -14,17 +14,17 @@
         <h1>Login</h1>
     </mat-card-header>
     <mat-card-content>
-        <form [formGroup]="myGroup" (ngSubmit)="login()">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
             <mat-form-field>
-              <mat-label>Benutzername</mat-label>
-              <input matInput formControlName="username">
+                <mat-label>Benutzername</mat-label>
+                <input matInput formControlName="username">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Passwort</mat-label>
                 <input type="password" matInput formControlName="password">
             </mat-form-field>
             <div>
-                <button mat-raised-button color="primary">Login</button>
+                <button mat-raised-button color="primary" type="submit">Login</button>
                 <a routerLink="/register" mat-raised-button color="accent">Account erstellen</a>
             </div>
         </form>

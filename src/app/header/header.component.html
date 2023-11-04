@@ -2,6 +2,7 @@
     <a routerLink="/"><img class="logo" src="assets/logo.png"></a>
     <div class="spacer"></div>
     <a routerLink="/eventlist">Eventlist</a>
-    <a routerLink="/eventadd">Eventadd</a>
-    <a routerLink="/login">Logout</a>
+    <a *ngIf="ishostuser" routerLink="/eventadd">Eventadd</a>
+    <a routerLink="/login">Login</a>
+    <a routerLink="logout">Logout</a>
 </header>

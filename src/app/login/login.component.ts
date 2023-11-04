@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../data/user-service'; // import the AuthService
-import { FormControl, FormGroup } from '@angular/forms';
+import { UserService } from '../data/user-service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,45 +8,37 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
 
-  myGroup: FormGroup;
-
-  username = ''; // for login
-  password = ''; // for login
-
-  constructor(
-    private userService: UserService // add the AuthService here
-  ) { 
-    this.myGroup = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl(''),
+  constructor(private userService: UserService) {
+    this.loginForm = new FormGroup({
+      username: new FormControl('', Validators.required), // You can add more validators as needed
+      password: new FormControl('', Validators.required)
     });
   }
 
   ngOnInit() { }
 
+
   login(): void {
-    this.userService.login(this.username, this.password).subscribe(
-      response => {
-        // handle response, save the token, etc.
-        console.log(response);
-        localStorage.setItem('token', response.token); // save the token
-      },
-      error => {
-        // handle error
-        console.error(error);
-      }
-    );
-  }
-
-  storeDataOnDB(): void {
-    const token = localStorage.getItem('token'); // get the token
-    if (!token) {
-      alert('Not authenticated');
-      return;
+    if (this.loginForm.valid) {
+      this.userService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(
+        response => {
+          // Handle response, save the token, etc.
+          console.log(response);
+          localStorage.setItem('token', response.token); // save the token
+        },
+        error => {
+          // Handle error
+          console.error(error);
+        }
+      );
+    } else {
+      // Handle form validation error
     }
-
-
-
   }
+
+
+
+
 }
