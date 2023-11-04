@@ -14,7 +14,7 @@
         <h1>Login</h1>
     </mat-card-header>
     <mat-card-content>
-        <form>
+        <form [formGroup]="myGroup" (ngSubmit)="login()">
             <mat-form-field>
               <mat-label>Benutzername</mat-label>
               <input matInput formControlName="username">
