@@ -18,6 +18,7 @@ import { EventService } from './data/event-service';
 import { EventlistComponent } from './eventlist/eventlist.component';
 import { EventaddComponent } from './eventadd/eventadd.component';
 import { EventeditComponent } from './eventedit/eventedit.component';
+import { UserlistComponent } from './userlist/userlist.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EventeditComponent } from './eventedit/eventedit.component';
     RegisterComponent,
     EventlistComponent,
     EventaddComponent,
-    EventeditComponent
+    EventeditComponent,
+    UserlistComponent
   ],
   imports: [
     BrowserModule,
