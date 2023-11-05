@@ -1,5 +1,8 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { map } from 'rxjs/operators';
+import { EventResponse } from "../graphql/eventresponse";
+
 
 @Injectable()
 export class EventService {
@@ -17,6 +20,25 @@ export class EventService {
   }
 
   getEvents() {
-    return this.http.get(this.apiUrl + '/graphql');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const query = {
+      query: `
+        query {
+          allEvents {
+            name,
+            date,
+            location
+          }
+        }
+      `
+    };
+
+    return this.http.post<EventResponse>(this.apiUrl + '/graphql', query, { headers })
+      .pipe(
+        map(response => response.data.allEvents)
+      );
   }
 }
