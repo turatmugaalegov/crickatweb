@@ -15,5 +15,8 @@ export class EventService {
     });
     return this.http.post<any>(`${this.apiUrl}/create-event`, { name, date, type, ageRating, ticketPrice, location}, { headers: headers, withCredentials: true });
   }
-  // ... other methods ...
+
+  getEvents() {
+    return this.http.get(this.apiUrl + '/events/all');
+  }
 }

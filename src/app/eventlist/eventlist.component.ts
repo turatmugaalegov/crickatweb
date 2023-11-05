@@ -7,7 +7,11 @@ import { EventService } from '../data/event-service';
 })
 export class EventlistComponent implements OnInit {
   public events: any;
+  displayedColumns: string[] = ['id', 'name', 'date', 'type', 'ageRating', 'host', 'ticketPrice', 'location'];
   constructor(private eventservice: EventService) {}
   ngOnInit() {
-    this.eventservice; }
+    this.eventservice.getEvents().subscribe(data => {
+      this.events = data;
+    }); 
+  }
 }
