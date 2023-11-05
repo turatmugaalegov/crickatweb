@@ -1,1 +1,6 @@
-<p>eventdialog works!</p>
+<h2>Event Information</h2>
+<ul>
+  <li *ngFor="let info of eventInfo">
+    <strong>{{ info.label }}:</strong> {{ info.value }}
+  </li>
+</ul>
