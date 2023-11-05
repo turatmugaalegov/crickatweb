@@ -21,18 +21,35 @@ export class HeaderComponent {
   
 
   ngDoCheck(): void {
-    if(this.userService.getUserRole()==='admin'){
-      this.isadminuser=true;
-      this.ishostuser=true;
-    } else{
-      this.isadminuser=false;
-    }
-  
-    if(this.userService.getUserRole()==='event_host'){
-      this.ishostuser=true;
-    } else{
-      this.ishostuser=false;
-    }
+    this.userService.getUserRole().subscribe(
+      (userRole: string) => {
+        if (userRole === 'ADMIN') {
+          this.isadminuser=true;
+          this.ishostuser=true;
+        } else {
+          this.isadminuser=false;
+        }
+      },
+      (error) => {
+        console.error('Fehler beim Abrufen der Benutzerrolle:', error);
+        // Führen Sie eine geeignete Fehlerbehandlung durch
+      }
+    );
+
+    this.userService.getUserRole().subscribe(
+      (userRole: string) => {
+        if (userRole === 'HOST') {
+          this.isadminuser=false;
+          this.ishostuser=true;
+        } else {
+          this.ishostuser=false;
+        }
+      },
+      (error) => {
+        console.error('Fehler beim Abrufen der Benutzerrolle:', error);
+        // Führen Sie eine geeignete Fehlerbehandlung durch
+      }
+    );
 
     if(this.userService.getLoggedStatus()){
       this.isloggedinHEAD=true;

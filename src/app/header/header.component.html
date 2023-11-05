@@ -5,13 +5,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item" *ngIf="isadminuser">
+            <li class="nav-item" *ngIf="ishostuser">
                 <a class="nav-link" routerLink="/eventadd">Event hinzufügen</a>
             </li>
-            <li class="nav-item" *ngIf="isadminuser">
+            <li class="nav-item" *ngIf="ishostuser">
                 <a class="nav-link" routerLink="/eventedit">Meine Events</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isadminuser">
                 <a class="nav-link" routerLink="/userlist">Benutzerliste</a>
             </li>
             <li class="nav-item" *ngIf="isnotloggedinHEAD">

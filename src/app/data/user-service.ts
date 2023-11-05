@@ -37,9 +37,16 @@ export class UserService {
     return this.http.post<any>(`${this.apiUrl}/logout`, {}, { headers: headers, withCredentials: true });
   }
   
-  getUserRole() {
-    return "admin";
+  getUserRole(): Observable<string> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+  
+    return this.http.get<string>(`${this.apiUrl}/auth/role`, { headers: headers });
   }
+  
 
   updateLoggedStatus() {
     if (localStorage.length===0) {
