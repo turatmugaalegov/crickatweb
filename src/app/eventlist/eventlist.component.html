@@ -8,37 +8,7 @@
   
       <ng-container matColumnDef="name">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="date">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="type">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="ageRating">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> ageRating </th>
-        <td mat-cell *matCellDef="let element"> {{element.ageRating}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="host">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> host </th>
-        <td mat-cell *matCellDef="let element"> {{element.host}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="ticketPrice">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> ticketPrice </th>
-        <td mat-cell *matCellDef="let element"> {{element.ticketPrice}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="location">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> location </th>
-        <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+        <td mat-cell *matCellDef="let element" (click)="openEventDialog(element)"> {{element.name}} </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
