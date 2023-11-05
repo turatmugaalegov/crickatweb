@@ -7,35 +7,15 @@ const httpOptions = {
 }
 @Injectable()
 export class EventService {
+    private apiUrl = 'https://dry-caverns-85169-185a985df7fb.herokuapp.com/api/v1.0'; 
+  
     constructor(private http: HttpClient) { }
+  
+    createEvent(name: string, date: string, type: string, ageRating: String, ticketPrice: number, location: string) {
+      return this.http.post<any>(`${this.apiUrl}/create-event`, { name, date, type, ageRating, ticketPrice, location});
+    }
+
     getData() {
-        return this.http.get('https://dry-caverns-85169-185a985df7fb.herokuapp.com/api/v1.0/events/all');
-    }
-    addData(postEvent: Object) {
-        let endPoint = "https://dry-caverns-85169-185a985df7fb.herokuapp.com/api/v1.0/create-event"
-        this.http.post(endPoint, postEvent).subscribe(data => {
-            console.log(data);
-        });
-    }
-    editData(patchEvent: Object) {
-        let endPoint = "https://dry-caverns-85169-185a985df7fb.herokuapp.com/api/v1.0/edit-event/{id}"
-        this.http.post(endPoint, patchEvent).subscribe(data => {
-            console.log(data);
-        });
-    }
-    deleteData(deleteEvent: Object) {
-        let endPoint = "https://dry-caverns-85169-185a985df7fb.herokuapp.com/api/v1.0/delete-event/{id}"
-        this.http.post(endPoint, deleteEvent).subscribe(data => {
-            console.log(data);
-        });
-    }
-    favData(postFavoriteEvent: Object) {
-        let endPoint = "https://dry-caverns-85169-185a985df7fb.herokuapp.com/api/v1.0/favorite-event/{id}"
-        this.http.post(endPoint, postFavoriteEvent).subscribe(data => {
-            console.log(data);
-        });
-    }
-    getallfavData() {
-        return this.http.get('https://dry-caverns-85169-185a985df7fb.herokuapp.com/api/v1.0/events/favorites');
-    }
+        return this.http.post<any>(`${this.apiUrl}/events/all`, { });
+      }
 }
