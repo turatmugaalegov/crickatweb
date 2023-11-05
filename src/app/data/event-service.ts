@@ -27,12 +27,14 @@ export class EventService {
     const query = {
       query: `
         query {
-          allEvents {
-            name,
-            date,
-            location
-          }
-        }
+        allEvents {
+        events {
+        name
+        date
+        location
+    }
+  }
+}
       `
     };
 

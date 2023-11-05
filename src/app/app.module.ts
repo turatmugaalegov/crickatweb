@@ -20,6 +20,7 @@ import { EventaddComponent } from './eventadd/eventadd.component';
 import { EventeditComponent } from './eventedit/eventedit.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { EventdialogComponent } from './eventdialog/eventdialog.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EventdialogComponent } from './eventdialog/eventdialog.component';
     EventaddComponent,
     EventeditComponent,
     UserlistComponent,
-    EventdialogComponent
+    EventdialogComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

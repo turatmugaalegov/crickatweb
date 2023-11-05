@@ -11,15 +11,19 @@ export class HeaderComponent {
 
   isadminuser=false;
   ishostuser=false;
-  isloggedin=false;
+  isloggedinHEAD=false;
+  isnotloggedinHEAD=true;
 
   constructor(private router:Router, private userService:UserService){
 
   }
 
+  
+
   ngDoCheck(): void {
     if(this.userService.getUserRole()==='admin'){
       this.isadminuser=true;
+      this.ishostuser=true;
     } else{
       this.isadminuser=false;
     }
@@ -28,6 +32,14 @@ export class HeaderComponent {
       this.ishostuser=true;
     } else{
       this.ishostuser=false;
+    }
+
+    if(this.userService.getLoggedStatus()){
+      this.isloggedinHEAD=true;
+      this.isnotloggedinHEAD=false;
+    } else {
+      this.isloggedinHEAD=false;
+      this.isnotloggedinHEAD=true;
     }
   }
 }

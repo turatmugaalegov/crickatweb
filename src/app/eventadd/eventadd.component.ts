@@ -9,6 +9,8 @@ import { EventService } from '../data/event-service';
 })
 export class EventaddComponent implements OnInit {
   addEventForm: FormGroup;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private eventService: EventService) {
     this.addEventForm = new FormGroup({
@@ -36,10 +38,12 @@ export class EventaddComponent implements OnInit {
         response => {
           // Handle the successful response here
           console.log(response);
+          this.successMessage = 'Du bist jetzt ausgeloggt!';
         },
         error => {
           // Handle error here
           console.error(error);
+          this.errorMessage = 'Logout fehlgeschlagen. Bitte versuche es erneut.';
         }
       );
     } else {

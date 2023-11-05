@@ -7,6 +7,7 @@ import { EventlistComponent } from './eventlist/eventlist.component';
 import { EventaddComponent } from './eventadd/eventadd.component';
 import { EventeditComponent } from './eventedit/eventedit.component';
 import { UserlistComponent } from './userlist/userlist.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path:'eventlist',component:EventlistComponent},
   {path:'eventadd',component:EventaddComponent},
   {path:'eventedit',component:EventeditComponent},
-  {path:'userlist',component:UserlistComponent}
+  {path:'userlist',component:UserlistComponent},
+  {path:'logout',component:LogoutComponent}
 
 ];
 

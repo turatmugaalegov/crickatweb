@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../data/user-service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +13,16 @@ export class LoginComponent implements OnInit {
   successMessage: string = '';
   errorMessage: string = '';
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    localStorage.clear();
+   }
 
   login(): void {
     if (this.loginForm.valid) {
@@ -28,7 +31,9 @@ export class LoginComponent implements OnInit {
           // Assuming the response token is directly accessible as `response.token`
           if (response && response.token) {
             localStorage.setItem('token', response.token); // Store the token in local storage
+            this.userService.updateLoggedStatus();
             this.successMessage = 'Du bist jetzt eingeloggt!';
+            this.router.navigate(['']);
             // Further actions upon successful login, such as redirecting to another page
           } else {
             // Handle cases where the response does not contain a token
