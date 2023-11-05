@@ -17,6 +17,6 @@ export class EventService {
   }
 
   getEvents() {
-    return this.http.get(this.apiUrl + '/events/all');
+    return this.http.get(this.apiUrl + '/graphql');
   }
 }
