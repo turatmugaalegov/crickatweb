@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EventService } from './data/event-service';
 import { EventlistComponent } from './eventlist/eventlist.component';
 import { EventaddComponent } from './eventadd/eventadd.component';
+import { EventeditComponent } from './eventedit/eventedit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EventaddComponent } from './eventadd/eventadd.component';
     LoginComponent,
     RegisterComponent,
     EventlistComponent,
-    EventaddComponent
+    EventaddComponent,
+    EventeditComponent
   ],
   imports: [
     BrowserModule,
