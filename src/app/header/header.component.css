@@ -8,6 +8,7 @@ header {
     display: flex;
     align-items: center;
     font-weight: 600;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 a {
@@ -26,7 +27,7 @@ a {
     flex: 1;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 576px) {
     .logo {
         margin-left: 10px
     }

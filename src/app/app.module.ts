@@ -21,6 +21,8 @@ import { EventeditComponent } from './eventedit/eventedit.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { EventdialogComponent } from './eventdialog/eventdialog.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +43,7 @@ import { EventdialogComponent } from './eventdialog/eventdialog.component';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
     ToastrModule.forRoot()
   ],
   providers: [EventService],
