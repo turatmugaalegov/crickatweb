@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../data/user-service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,36 +10,37 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  successMessage: string = '';
+  errorMessage: string = '';
 
-  constructor(private userService: UserService) {
+  // Add CookieService to the constructor parameters
+  constructor(
+    private userService: UserService, 
+  ) {
     this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required), // You can add more validators as needed
+      username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
   }
 
   ngOnInit() { }
 
-
   login(): void {
     if (this.loginForm.valid) {
       this.userService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(
         response => {
-          // Handle response, save the token, etc.
-          console.log(response);
-          localStorage.setItem('token', response.token); // save the token
+          this.successMessage = 'Du bist jetzt eingeloggt!';
+         
+
         },
         error => {
-          // Handle error
-          console.error(error);
+          const errorMessage = error.error.message || 'Ein unerwarteter Fehler ist aufgetreten.';
+          this.errorMessage = errorMessage;
+          console.error('Login error:', error);
         }
       );
     } else {
-      // Handle form validation error
+      this.errorMessage = 'Bitte fülle alle Felder korrekt aus.';
     }
   }
-
-
-
-
 }
