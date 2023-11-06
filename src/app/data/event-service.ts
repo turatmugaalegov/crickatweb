@@ -51,6 +51,6 @@ export class EventService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token // Include the token in the Authorization header
     });
-    return this.http.get(`${this.apiUrl}/events/myevents}`, { headers: headers });
+    return this.http.get(`${this.apiUrl}/events/myevents`, { headers: headers });
   }
 }
