@@ -45,10 +45,10 @@ export class UserService {
   
 
   updateLoggedStatus() {
-    if (localStorage.length===0) {
-      this.isloggedin=false;
-    } else {
+    if (localStorage.getItem('token')) {
       this.isloggedin=true;
+    } else {
+      this.isloggedin=false;
     }
   }
 

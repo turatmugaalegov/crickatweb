@@ -24,5 +24,7 @@
                 <button mat-raised-button color="primary" type="submit">Register</button>
             </div>
         </form>
+        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     </mat-card-content>
 </mat-card>

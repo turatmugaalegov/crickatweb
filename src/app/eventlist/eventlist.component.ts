@@ -16,53 +16,53 @@ export class EventlistComponent implements OnInit {
   displayedColumns: string[] = ['name', 'date', 'location', 'favorite'];
   dataSource!: MatTableDataSource<any>; 
   showFavoritesOnly: boolean = false;
+  public events: any;
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  constructor(private eventService: EventService, public dialog: MatDialog, private formmod: FormsModule ) { }
+  constructor(private eventService: EventService, public dialog: MatDialog, private formmod: FormsModule, private dialogService: DialogService) { }
 
   ngOnInit() {
     this.fetchEvents();
+    this.eventService.getEvents().subscribe(data => {
+      this.events = data;
+      this.events = new MatTableDataSource(this.events);
+      this.events.paginator = this.paginator;
+      this.events.sort = this.sort;
+    });
   }
   
-  openEventDialog(element: any): void {
-    const dialogRef = this.dialog.open(MatDialog, {
-      width: '250px',
-      data: { event: element } // Pass data to your dialog here
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // You can handle dialog result here
-    });
+  openEventDialog(eventData: any): void {
+    this.dialogService.openEventDialog(eventData);
   }
 
   fetchEvents() {
-    if (this.showFavoritesOnly) {
-      this.eventService.getFavoriteEvents().subscribe({
-        next: (events: any[]) => {
-          this.dataSource = new MatTableDataSource(events);
-          // Set up paginator and sort if needed.
-        },
-        error: (error: any) => {
-          // Handle errors here
-          console.error('There was an error!', error);
-        }
-      });
-    } else {
-      this.eventService.getEvents().subscribe({
-        next: (events: any[]) => {
-          this.dataSource = new MatTableDataSource(events);
-          // Set up paginator and sort if needed.
-        },
-        error: (error: any) => {
-          // Handle errors here
-          console.error('There was an error!', error);
-        }
-      });
-    }
+  if (this.showFavoritesOnly) {
+    this.eventService.getFavoriteEvents().subscribe({
+      next: (events: any[]) => {
+        this.dataSource = new MatTableDataSource(events);
+        // Set up paginator and sort if needed.
+      },
+      error: (error: any) => {
+        // Handle errors here
+        console.error('There was an error!', error);
+      }
+    });
+  } else {
+    this.eventService.getEvents().subscribe({
+      next: (events: any[]) => {
+        this.dataSource = new MatTableDataSource(events);
+        // Set up paginator and sort if needed.
+      },
+      error: (error: any) => {
+        // Handle errors here
+        console.error('There was an error!', error);
+      }
+    });
   }
+}
+
 
   toggleFavorite(event: any): void {
     this.eventService.toggleFavorite(event).subscribe(() => {
@@ -73,6 +73,11 @@ export class EventlistComponent implements OnInit {
 
   onShowFavoritesChange() {
     this.fetchEvents();
+  }
+
+  onPageChange(event: any): void {
+    // Update the data source based on the page event
+    this.dataSource.paginator = this.paginator;
   }
 
 }

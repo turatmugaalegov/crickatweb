@@ -9,6 +9,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private userService: UserService) {
     this.registerForm = new FormGroup({
@@ -28,10 +30,12 @@ export class RegisterComponent implements OnInit {
         response => {
           // Handle response, save the token, etc.
           console.log(response);
+          this.successMessage = 'Du bist jetzt eingeloggt!';
         },
         error => {
           // Handle error
           console.error(error);
+          this.errorMessage = 'Login fehlgeschlagen. Bitte versuche es erneut.';
         }
       );
     } else {

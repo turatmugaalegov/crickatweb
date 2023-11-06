@@ -13,6 +13,7 @@ export class EventdialogeditComponent {
   addEventForm: FormGroup;
   successMessage: string = '';
   errorMessage: string = '';
+  public eventsE: any;
 
   constructor(private eventService: EventService, @Inject(MAT_DIALOG_DATA) public data:any, private fb: FormBuilder) {
     this.addEventForm = this.fb.group({
@@ -25,10 +26,16 @@ export class EventdialogeditComponent {
     });
   }
 
+  ngOnInit() {
+    this.eventService.getEvents().subscribe(data => {
+      this.eventsE = data;
+    });
+  }
+
   updateEvent(): void {
     if (this.addEventForm.valid) {
       this.eventService.updateEvent(
-        'Hier-deine-Event-ID', // Setze die Event-ID, die du aktualisieren möchtest.
+        this.eventsE.id, // Setze die Event-ID, die du aktualisieren möchtest.
         this.addEventForm.value
       ).subscribe(
         response => {

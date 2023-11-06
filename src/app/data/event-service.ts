@@ -37,29 +37,8 @@ export class EventService {
     return this.http.put<any>(`${this.apiUrl}/edit-event/${eventId}`, updatedEvent, { headers: headers, withCredentials: true });
   }
 
-  getEvents() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-  
-    const query = {
-      query: `
-        query {
-          allEvents {
-            events {
-              name
-              date
-              location
-            }
-          }
-        }
-      `
-    };
-    
-    return this.http.post<EventResponse>(this.apiUrl + '/graphql', query, { headers })
-      .pipe(
-        map(response => response.data.allEvents)
-      );
+  getEvents(): Observable<any> {
+    return this.http.get(this.apiUrl + '/events/all');
   }
 
   markAsFavorite(eventId: number): Observable<any> {
@@ -81,7 +60,7 @@ export class EventService {
       'Authorization': 'Bearer ' + token
     });
 
-    const body = {}; // You can add any necessary data to the request body
+    const body = { eventId: event }; // You can add any necessary data to the request body
 
     return this.http.post(`${this.apiUrl}/favorite-event/${event.id}`, body, { headers });
   }
