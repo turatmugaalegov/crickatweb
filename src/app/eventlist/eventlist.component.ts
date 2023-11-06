@@ -23,18 +23,9 @@ export class EventlistComponent implements OnInit {
   constructor(private eventService: EventService, public dialog: MatDialog, private formmod: FormsModule ) { }
 
   ngOnInit() {
-    this.eventService.getEvents().subscribe({
-      next: (events: any[]) => {
-        this.dataSource = new MatTableDataSource(events);
-        // If you are setting paginator and sort in ngOnInit, then it may not be available at this time.
-        // You may have to use ngAfterViewInit or set a timeout to wait for the view to be initialized.
-      },
-      error: (error: any) => {
-        // Handle errors here
-        console.error('There was an error!', error);
-      }
-    });
+    this.fetchEvents();
   }
+  
   openEventDialog(element: any): void {
     const dialogRef = this.dialog.open(MatDialog, {
       width: '250px',
@@ -47,14 +38,41 @@ export class EventlistComponent implements OnInit {
     });
   }
 
+  fetchEvents() {
+    if (this.showFavoritesOnly) {
+      this.eventService.getFavoriteEvents().subscribe({
+        next: (events: any[]) => {
+          this.dataSource = new MatTableDataSource(events);
+          // Set up paginator and sort if needed.
+        },
+        error: (error: any) => {
+          // Handle errors here
+          console.error('There was an error!', error);
+        }
+      });
+    } else {
+      this.eventService.getEvents().subscribe({
+        next: (events: any[]) => {
+          this.dataSource = new MatTableDataSource(events);
+          // Set up paginator and sort if needed.
+        },
+        error: (error: any) => {
+          // Handle errors here
+          console.error('There was an error!', error);
+        }
+      });
+    }
+  }
+
   toggleFavorite(event: any): void {
-    // Make an API call to mark/unmark the event as a favorite
-    // You can use the HttpClient to send a POST request to your API.
-    // Example code to call the API:
-  
-    this.eventService.markAsFavorite(event.id).subscribe((response) => {
-      // Handle the API response (e.g., update the event's favorite status in the local data)
+    this.eventService.toggleFavorite(event).subscribe(() => {
       event.isFavorite = !event.isFavorite; // Toggle the favorite status locally
+      this.fetchEvents(); // Fetch the updated list of events
     });
   }
+
+  onShowFavoritesChange() {
+    this.fetchEvents();
+  }
+
 }

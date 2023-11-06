@@ -49,9 +49,6 @@ export class EventService {
             events {
               name
               date
-              type
-              ageRating
-              ticketPrice
               location
             }
           }
@@ -75,6 +72,28 @@ export class EventService {
     const body = {}; // You can add any necessary data to the request body
   
     return this.http.post(`${this.apiUrl}/favorite-event/${eventId}`, body, { headers });
+  }
+
+  toggleFavorite(event: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+
+    const body = {}; // You can add any necessary data to the request body
+
+    return this.http.post(`${this.apiUrl}/favorite-event/${event.id}`, body, { headers });
+  }
+
+  getFavoriteEvents(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+
+    return this.http.get(`${this.apiUrl}/events/favorites`, { headers });
   }
 
   getEventsForUser(): Observable<any> {

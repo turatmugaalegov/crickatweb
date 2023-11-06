@@ -32,6 +32,6 @@
                  aria-label="Select page of periodic elements">
   </mat-paginator>
 
-  <mat-checkbox [(ngModel)]="showFavoritesOnly">Show Favorites Only</mat-checkbox>
+  <mat-checkbox [(ngModel)]="showFavoritesOnly" (change)="onShowFavoritesChange()">Show Favorites Only</mat-checkbox>
 
 </div>
