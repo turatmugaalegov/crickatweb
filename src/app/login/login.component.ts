@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
           // Assuming the response token is directly accessible as `response.token`
           if (response && response.token) {
             localStorage.setItem('token', response.token); // Store the token in local storage
+            localStorage.setItem('role', response.role);
             this.userService.updateLoggedStatus();
             this.successMessage = 'Du bist jetzt eingeloggt!';
             this.router.navigate(['']);

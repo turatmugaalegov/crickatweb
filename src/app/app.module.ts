@@ -21,6 +21,7 @@ import { EventeditComponent } from './eventedit/eventedit.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { EventdialogComponent } from './eventdialog/eventdialog.component';
 import { LogoutComponent } from './logout/logout.component';
+import { EventdialogeditComponent } from './eventdialogedit/eventdialogedit.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LogoutComponent } from './logout/logout.component';
     EventeditComponent,
     UserlistComponent,
     EventdialogComponent,
-    LogoutComponent
+    LogoutComponent,
+    EventdialogeditComponent
   ],
   imports: [
     BrowserModule,

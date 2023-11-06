@@ -17,6 +17,7 @@ export class UserService {
   private apiUrl = 'https://dry-caverns-85169-185a985df7fb.herokuapp.com/api/v1.0';
 
   isloggedin = false;
+  localrole='abc';
 
   constructor(private http: HttpClient) { }
 
@@ -37,14 +38,9 @@ export class UserService {
     return this.http.post<any>(`${this.apiUrl}/logout`, {}, { headers: headers, withCredentials: true });
   }
   
-  getUserRole(): Observable<string> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token
-    });
-  
-    return this.http.get<string>(`${this.apiUrl}/auth/role`, { headers: headers });
+  getUserRole(){
+    const role = localStorage.getItem('role');
+    return role;
   }
   
 

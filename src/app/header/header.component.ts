@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../data/user-service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -18,45 +19,28 @@ export class HeaderComponent {
 
   }
 
-  
+  ngOnInit() {
+    
+  }
 
   ngDoCheck(): void {
-    this.userService.getUserRole().subscribe(
-      (userRole: string) => {
-        if (userRole === 'ADMIN') {
-          this.isadminuser=true;
-          this.ishostuser=true;
-        } else {
-          this.isadminuser=false;
-        }
-      },
-      (error) => {
-        console.error('Fehler beim Abrufen der Benutzerrolle:', error);
-        // Führen Sie eine geeignete Fehlerbehandlung durch
-      }
-    );
-
-    this.userService.getUserRole().subscribe(
-      (userRole: string) => {
-        if (userRole === 'HOST') {
-          this.isadminuser=false;
-          this.ishostuser=true;
-        } else {
-          this.ishostuser=false;
-        }
-      },
-      (error) => {
-        console.error('Fehler beim Abrufen der Benutzerrolle:', error);
-        // Führen Sie eine geeignete Fehlerbehandlung durch
-      }
-    );
-
     if(this.userService.getLoggedStatus()){
       this.isloggedinHEAD=true;
       this.isnotloggedinHEAD=false;
     } else {
       this.isloggedinHEAD=false;
       this.isnotloggedinHEAD=true;
+    }
+
+    if(this.userService.getUserRole() == 'ADMIN'){
+      this.isadminuser = true;
+      this.ishostuser = true;
+    }  else if (this.userService.getUserRole() == 'EVENT_HOST') {
+      this.isadminuser = false;
+      this.ishostuser = true;
+    } else {
+      this.isadminuser = false;
+      this.ishostuser = false;
     }
   }
 }

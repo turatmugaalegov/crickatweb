@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from 'rxjs/operators';
 import { EventResponse } from "../graphql/eventresponse";
+import { Observable } from "rxjs";
 
 
 @Injectable()
@@ -42,5 +43,14 @@ export class EventService {
       .pipe(
         map(response => response.data.allEvents)
       );
+  }
+
+  getEventsForUser(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token // Include the token in the Authorization header
+    });
+    return this.http.get(`${this.apiUrl}/events/myevents}`, { headers: headers });
   }
 }
