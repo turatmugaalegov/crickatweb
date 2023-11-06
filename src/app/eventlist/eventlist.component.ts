@@ -1,5 +1,6 @@
 import { Component, Injectable, OnInit, ViewChild } from '@angular/core';
 import { EventService } from '../data/event-service';
+import { UserService } from '../data/user-service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -17,11 +18,13 @@ export class EventlistComponent implements OnInit {
   dataSource!: MatTableDataSource<any>; 
   showFavoritesOnly: boolean = false;
   public events: any;
+  isloggedinHEAD=false;
+  isnotloggedinHEAD=true;
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  constructor(private eventService: EventService, public dialog: MatDialog, private formmod: FormsModule, private dialogService: DialogService) { }
+  constructor(private userService: UserService, private eventService: EventService, public dialog: MatDialog, private formmod: FormsModule, private dialogService: DialogService) { }
 
   ngOnInit() {
     this.fetchEvents();
@@ -31,6 +34,20 @@ export class EventlistComponent implements OnInit {
       this.events.paginator = this.paginator;
       this.events.sort = this.sort;
     });
+  }
+
+  ngDoCheck(): void {
+    if(this.userService.getLoggedStatus()){
+      this.isloggedinHEAD=true;
+      this.isnotloggedinHEAD=false;
+    } else {
+      this.isloggedinHEAD=false;
+      this.isnotloggedinHEAD=true;
+    }
+  }
+
+  isFavoriteColumnVisible(): boolean {
+    return this.isloggedinHEAD;
   }
   
   openEventDialog(eventData: any): void {

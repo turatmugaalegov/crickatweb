@@ -20,7 +20,9 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    
+    if(this.isnotloggedinHEAD) {
+      this.router.navigate(['/login']);
+    }
   }
 
   ngDoCheck(): void {

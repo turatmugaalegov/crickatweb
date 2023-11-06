@@ -25,7 +25,7 @@ export class LogoutComponent {
           this.successMessage = 'Du bist jetzt ausgeloggt!';
           setTimeout(function () {
             window.location.href = '/';
-          }, 1500);
+          }, 1000);
         } else {
           this.errorMessage = 'Logout fehlgeschlagen. Bitte versuche es erneut.';
         }
