@@ -24,8 +24,9 @@
     <ng-container matColumnDef="favorite">
       <th mat-header-cell *matHeaderCellDef> Favorite </th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon (click)="toggleFavorite(element)">favorite</mat-icon>
-        <a (click)="toggleFavorite(element)" mat-raised-button color="primary"></a>
+        <button (click)="toggleFavorite(element)" mat-icon-button color="primary">
+          <mat-icon>favorite</mat-icon>
+        </button>
       </td>
     </ng-container>
 

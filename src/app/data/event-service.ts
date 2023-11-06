@@ -34,23 +34,11 @@ export class EventService {
     });
   
     // Führe eine PUT-Anfrage aus, um das Event zu aktualisieren
-    return this.http.put<any>(`${this.apiUrl}/edit-event/${eventId}`, updatedEvent, { headers: headers, withCredentials: true });
+    return this.http.patch<any>(`${this.apiUrl}/edit-event/${eventId}`, updatedEvent, { headers: headers, withCredentials: true });
   }
 
   getEvents(): Observable<any> {
     return this.http.get(this.apiUrl + '/events/all');
-  }
-
-  markAsFavorite(eventId: number): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token
-    });
-  
-    const body = {}; // You can add any necessary data to the request body
-  
-    return this.http.post(`${this.apiUrl}/favorite-event/${eventId}`, body, { headers });
   }
 
   toggleFavorite(event: any): Observable<any> {
@@ -82,5 +70,15 @@ export class EventService {
       'Authorization': 'Bearer ' + token // Include the token in the Authorization header
     });
     return this.http.get(`${this.apiUrl}/events/myevents`, { headers: headers });
+  }
+
+  deleteEvent(eventId: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+
+    return this.http.delete(`${this.apiUrl}/delete-event/${eventId}`, { headers, withCredentials: true });
   }
 }
