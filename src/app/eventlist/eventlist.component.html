@@ -16,6 +16,13 @@
       <td mat-cell *matCellDef="let element" (click)="openEventDialog(element)"> {{element.location}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="favorite">
+      <th mat-header-cell *matHeaderCellDef> Favorite </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon (click)="toggleFavorite(element)">favorite</mat-icon>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
@@ -24,4 +31,7 @@
                  showFirstLastButtons
                  aria-label="Select page of periodic elements">
   </mat-paginator>
+
+  <mat-checkbox [(ngModel)]="showFavoritesOnly">Show Favorites Only</mat-checkbox>
+
 </div>

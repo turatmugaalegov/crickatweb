@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from '../data/dialog-service.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-eventlist',
@@ -12,13 +13,14 @@ import { DialogService } from '../data/dialog-service.service';
   styleUrls: ['./eventlist.component.css']
 })
 export class EventlistComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'date', 'location'];
+  displayedColumns: string[] = ['name', 'date', 'location', 'favorite'];
   dataSource!: MatTableDataSource<any>; 
+  showFavoritesOnly: boolean = false;
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  constructor(private eventService: EventService, public dialog: MatDialog ) { }
+  constructor(private eventService: EventService, public dialog: MatDialog, private formmod: FormsModule ) { }
 
   ngOnInit() {
     this.eventService.getEvents().subscribe({
@@ -42,6 +44,17 @@ export class EventlistComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       // You can handle dialog result here
+    });
+  }
+
+  toggleFavorite(event: any): void {
+    // Make an API call to mark/unmark the event as a favorite
+    // You can use the HttpClient to send a POST request to your API.
+    // Example code to call the API:
+  
+    this.eventService.markAsFavorite(event.id).subscribe((response) => {
+      // Handle the API response (e.g., update the event's favorite status in the local data)
+      event.isFavorite = !event.isFavorite; // Toggle the favorite status locally
     });
   }
 }

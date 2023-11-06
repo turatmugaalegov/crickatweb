@@ -23,6 +23,8 @@ import { EventdialogComponent } from './eventdialog/eventdialog.component';
 import { LogoutComponent } from './logout/logout.component';
 import { EventdialogeditComponent } from './eventdialogedit/eventdialogedit.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +47,7 @@ import { EventdialogeditComponent } from './eventdialogedit/eventdialogedit.comp
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
     ToastrModule.forRoot()
   ],
   providers: [EventService],
