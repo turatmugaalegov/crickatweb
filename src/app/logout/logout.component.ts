@@ -23,6 +23,9 @@ export class LogoutComponent {
           localStorage.clear();
           this.userService.updateLoggedStatus();
           this.successMessage = 'Du bist jetzt ausgeloggt!';
+          setTimeout(function () {
+            window.location.href = '/';
+          }, 2000);
         } else {
           this.errorMessage = 'Logout fehlgeschlagen. Bitte versuche es erneut.';
         }
