@@ -70,4 +70,9 @@ export class EventeditComponent {
     });
 
   }
+
+  onPageChange(event: any): void {
+    // Update the data source based on the page event
+    this.dataSource.paginator = this.paginator;
+  }
 }
