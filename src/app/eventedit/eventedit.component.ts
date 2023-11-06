@@ -20,7 +20,7 @@ export class EventeditComponent {
   constructor(private eventService: EventService, public dialog: MatDialog ) { }
 
   ngOnInit() {
-    this.eventService.getEvents().subscribe({
+    this.eventService.getEventsForUser().subscribe({
       next: (events: any[]) => {
         this.dataSource = new MatTableDataSource(events);
         // If you are setting paginator and sort in ngOnInit, then it may not be available at this time.
