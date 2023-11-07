@@ -35,7 +35,7 @@ export class UserService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token // Include the token in the Authorization header
     });
-    return this.http.post<any>(`${this.apiUrl}/logout`, {}, { headers: headers, withCredentials: true });
+    return this.http.post<any>(`${this.apiUrl}/auth/logout`, {}, { headers: headers, withCredentials: true });
   }
   
   getUserRole(){
@@ -63,7 +63,7 @@ export class UserService {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token,
       });
-      return this.http.get<any>(`${this.apiUrl}/users/all`, { headers: headers });
+      return this.http.get<any>(`${this.apiUrl}/users/getuser`, { headers: headers });
     } else {
       return new Observable(); // Handle this case accordingly
     }

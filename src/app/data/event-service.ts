@@ -23,7 +23,7 @@ export class EventService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token // Include the token in the Authorization header
     });
-    return this.http.post<any>(`${this.apiUrl}/create-event`, { name, date, type, ageRating, ticketPrice, location}, { headers: headers, withCredentials: true });
+    return this.http.post<any>(`${this.apiUrl}/events/create`, { name, date, type, ageRating, ticketPrice, location}, { headers: headers, withCredentials: true });
   }
 
   updateEvent(eventId: string, updatedEvent: any) {
@@ -34,7 +34,7 @@ export class EventService {
     });
   
     // Führe eine PUT-Anfrage aus, um das Event zu aktualisieren
-    return this.http.patch<any>(`${this.apiUrl}/edit-event/${eventId}`, updatedEvent, { headers: headers, withCredentials: true });
+    return this.http.patch<any>(`${this.apiUrl}/events/edit/${eventId}`, updatedEvent, { headers: headers, withCredentials: true });
   }
 
   getEvents(): Observable<any> {
@@ -50,7 +50,7 @@ export class EventService {
 
     const body = { eventId: event }; // You can add any necessary data to the request body
 
-    return this.http.post(`${this.apiUrl}/favorite-event/${event.id}`, body, { headers });
+    return this.http.post(`${this.apiUrl}/events/togglefavorite/${event.id}`, body, { headers });
   }
 
   getFavoriteEvents(): Observable<any> {
@@ -79,6 +79,6 @@ export class EventService {
       'Authorization': 'Bearer ' + token
     });
 
-    return this.http.delete(`${this.apiUrl}/delete-event/${event.id}`, { headers, withCredentials: true });
+    return this.http.delete(`${this.apiUrl}/events/delete/${event.id}`, { headers, withCredentials: true });
   }
 }
