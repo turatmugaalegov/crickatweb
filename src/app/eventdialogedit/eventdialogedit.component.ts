@@ -20,14 +20,17 @@ export class EventdialogeditComponent {
   errorMessage: string = '';
   public eventsE: any;
 
-  constructor(private eventService: EventService, @Inject(MAT_DIALOG_DATA) public data:any, private fb: FormBuilder) {
-    this.addEventForm = this.fb.group({
-      name: [''],
-      date: [''],
-      type: [''],
-      ageRating: [''],
-      ticketPrice: [''],
-      location: [''],
+  constructor(
+    private eventService: EventService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private fb: FormBuilder
+  ){   this.addEventForm = this.fb.group({
+    name: [data.event.name, Validators.required],
+    date: [data.event.date, Validators.required],
+    type: [data.event.type, Validators.required],
+    ageRating: [data.event.ageRating, Validators.required],
+    ticketPrice: [data.event.ticketPrice, Validators.required],
+    location: [data.event.location, Validators.required],
     });
   }
 
@@ -39,10 +42,13 @@ export class EventdialogeditComponent {
 
   updateEvent(): void {
     if (this.addEventForm.valid) {
-      this.eventService.updateEvent(
-        this.eventsE.id, // Setze die Event-ID, die du aktualisieren möchtest.
-        this.addEventForm.value
-      ).subscribe(
+      // Create the event object to send to the service including the id
+      const eventToUpdate = {
+        ...this.addEventForm.value,
+        id: this.data.event.id  // Get the id from the data passed to the dialog
+      };
+  
+      this.eventService.updateEvent(eventToUpdate, eventToUpdate.id).subscribe(
         response => {
           // Handle the successful response here
           console.log(response);
@@ -59,6 +65,7 @@ export class EventdialogeditComponent {
       console.error('Form is invalid');
     }
   }
+  
 
   onDateChange(event: Event): void {
     const selectedDate = (event.target as HTMLInputElement).value;
