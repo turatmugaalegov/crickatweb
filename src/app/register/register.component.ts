@@ -28,18 +28,15 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.userService.register(this.registerForm.value.username, this.registerForm.value.name, this.registerForm.value.email, this.registerForm.value.password).subscribe(
         response => {
-          // Handle response, save the token, etc.
           console.log(response);
-          this.successMessage = 'Du bist jetzt eingeloggt! ✅';
+          this.successMessage = 'Account erfolgreich erstellt ✅';
         },
         error => {
-          // Handle error
           console.error(error);
-          this.errorMessage = 'Login fehlgeschlagen. Bitte versuche es erneut.';
+          this.errorMessage = 'Registrierung fehlgeschlagen! Versuche es erneut';
         }
       );
     } else {
-      // Handle form validation error
     }
   }
 
