@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EventService } from '../data/event-service';
 import { EventdialogeditComponent } from '../eventdialogedit/eventdialogedit.component';
+import { DialogService } from '../data/dialog-service.service';
 
 @Component({
   selector: 'app-eventedit',
@@ -18,7 +19,7 @@ export class EventeditComponent {
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  constructor(private eventService: EventService, public dialog: MatDialog ) { }
+  constructor(private eventService: EventService, public dialog: MatDialog, private dialogService: DialogService) { }
 
   ngOnInit() {
 
@@ -30,20 +31,12 @@ export class EventeditComponent {
       },
       error: (error: any) => {
         // Handle errors here
-        console.error('There was an error!', error);
+        console.error('Ein fehler ist aufgetreten!', error);
       }
     });
   }
-  openEventDialog(element: any): void {
-    const dialogRef = this.dialog.open(MatDialog, {
-      width: '250px',
-      data: { event: element } // Pass data to your dialog here
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // You can handle dialog result here
-    });
+  openEventDialog(eventData: any): void {
+    this.dialogService.openEventDialog(eventData);
   }
 
   UpdateEvent(element:any){

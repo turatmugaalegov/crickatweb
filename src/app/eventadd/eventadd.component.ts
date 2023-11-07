@@ -38,12 +38,12 @@ export class EventaddComponent implements OnInit {
         response => {
           // Handle the successful response here
           console.log(response);
-          this.successMessage = 'Du bist jetzt ausgeloggt!';
+          this.successMessage = 'Event wurde erstellt';
         },
         error => {
           // Handle error here
           console.error(error);
-          this.errorMessage = 'Logout fehlgeschlagen. Bitte versuche es erneut.';
+          this.errorMessage = 'Etwas hat nicht geklappt. Bitte versuche es erneut.';
         }
       );
     } else {

@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
         response => {
           // Handle response, save the token, etc.
           console.log(response);
-          this.successMessage = 'Du bist jetzt eingeloggt!';
+          this.successMessage = 'Du bist jetzt eingeloggt! ✅';
         },
         error => {
           // Handle error

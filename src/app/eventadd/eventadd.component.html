@@ -9,27 +9,27 @@
                 <input matInput formControlName="name">
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Date</mat-label>
+                <mat-label>Datum (YYYY-MM-DD)</mat-label>
                 <input matInput formControlName="date">
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Type</mat-label>
+                <mat-label>Eventart</mat-label>
                 <input matInput formControlName="type">
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Age Rating</mat-label>
+                <mat-label>Zielgruppe</mat-label>
                 <input matInput formControlName="ageRating">
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Ticket Price</mat-label>
+                <mat-label>Ticket Preis (EUR)</mat-label>
                 <input matInput formControlName="ticketPrice">
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Location</mat-label>
+                <mat-label>Veranstaltungsort</mat-label>
                 <input matInput formControlName="location">
             </mat-form-field>
             <div>
-                <button mat-raised-button color="primary" type="submit">Create Event</button>
+                <button mat-raised-button color="primary" type="submit">Event erstellen</button>
             </div>
         </form>
         <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>

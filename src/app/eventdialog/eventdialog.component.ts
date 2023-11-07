@@ -14,14 +14,12 @@ export class EventdialogComponent {
   ngOnInit() {
     // Erstelle die Liste der Event-Informationen
     this.eventInfo = [
-      { label: 'ID', value: this.data.id },
-      { label: 'Name', value: this.data.name },
-      { label: 'Date', value: this.data.date },
-      { label: 'Type', value: this.data.type },
-      { label: 'Age Rating', value: this.data.ageRating },
-      { label: 'Host', value: this.data.host },
-      { label: 'Ticket Price', value: this.data.ticketPrice },
-      { label: 'Location', value: this.data.location },
+      { label: 'Event', value: this.data.name },
+      { label: 'Datum', value: this.data.date },
+      { label: 'Zielgruppe', value: this.data.ageRating },
+      { label: 'Veranstalter', value: this.data.host },
+      { label: 'Ticket Preis', value: this.data.ticketPrice },
+      { label: 'Veranstaltungsort', value: this.data.location },
     ];
   }
 }

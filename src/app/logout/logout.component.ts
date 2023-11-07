@@ -22,7 +22,7 @@ export class LogoutComponent {
         if (response) {
           localStorage.clear();
           this.userService.updateLoggedStatus();
-          this.successMessage = 'Du bist jetzt ausgeloggt!';
+          this.successMessage = 'Der Logout war erfolgreich ✅';
           setTimeout(function () {
             window.location.href = '/';
           }, 1000);

@@ -63,7 +63,7 @@ export class EventlistComponent implements OnInit {
       },
       error: (error: any) => {
         // Handle errors here
-        console.error('There was an error!', error);
+        console.error('Ein fehler ist aufgetreten!', error);
       }
     });
   } else {
@@ -74,7 +74,7 @@ export class EventlistComponent implements OnInit {
       },
       error: (error: any) => {
         // Handle errors here
-        console.error('There was an error!', error);
+        console.error('Ein fehler ist aufgetreten!', error);
       }
     });
   }
