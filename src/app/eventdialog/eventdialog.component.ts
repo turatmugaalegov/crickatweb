@@ -20,5 +20,34 @@ export class EventdialogComponent {
       { label: 'Ticket Preis', value: this.data.ticketPrice },
       { label: 'Veranstaltungsort', value: this.data.location },
     ];
+
+    this.initMap();
+
+    this.loadGoogleMapsScript(() => {
+      this.initMap(); // Rufe die Methode zum Initialisieren der Karte auf
+    });
   }
+
+  loadGoogleMapsScript(callback: () => void) {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=DEIN_GOOGLE_MAPS_API_KEY`;
+    script.onload = callback;
+    document.body.appendChild(script);
+  }
+
+  initMap() {
+    const mapOptions = {
+      center: { lat: this.data.location.lat, lng: this.data.location.lng },
+      zoom: 15,
+    };
+  
+    const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  
+    const marker = new google.maps.Marker({
+      position: { lat: this.data.location.lat, lng: this.data.location.lng },
+      map: map,
+      title: this.data.name,
+    });
+  }
+
 }
