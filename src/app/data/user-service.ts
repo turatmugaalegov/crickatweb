@@ -67,5 +67,9 @@ export class UserService {
       return new Observable();
     }
   }
+
+  getAllUsers() {
+    return this.http.get(this.apiUrl + '/users/all');
+  }
     
 }
