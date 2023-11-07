@@ -15,7 +15,7 @@ import { EventdeleteComponent } from '../eventdelete/eventdelete.component';
 })
 export class EventeditComponent {
   displayedColumns: string[] = ['name', 'id', 'date', 'location', 'action'];
-  dataSource!: MatTableDataSource<any>; 
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]); 
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
