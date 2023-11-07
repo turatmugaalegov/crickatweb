@@ -81,10 +81,6 @@ export class EventeditComponent {
           (response) => {
             // Handle the successful response here
             console.log(response);
-
-            this.eventService.getEventsForUser().subscribe((events: any[]) => {
-              this.dataSource.data = events;
-            });
           },
           (error) => {
             // Handle error here
