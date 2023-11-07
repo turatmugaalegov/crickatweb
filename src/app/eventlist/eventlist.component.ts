@@ -38,6 +38,16 @@ export class EventlistComponent implements OnInit {
     return this.isloggedinHEAD;
   }
 
+  ngDoCheck(): void {
+    if(this.userService.getLoggedStatus()){
+      this.isloggedinHEAD=true;
+      this.isnotloggedinHEAD=false;
+    } else {
+      this.isloggedinHEAD=false;
+      this.isnotloggedinHEAD=true;
+    }
+  }
+
   openEventDialog(eventData: any): void {
     this.dialogService.openEventDialog(eventData);
   }
