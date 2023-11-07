@@ -72,13 +72,13 @@ export class EventService {
     return this.http.get(`${this.apiUrl}/events/myevents`, { headers: headers });
   }
 
-  deleteEvent(eventId: string): Observable<any> {
+  deleteEvent(event: any): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token
     });
 
-    return this.http.delete(`${this.apiUrl}/delete-event/${eventId}`, { headers, withCredentials: true });
+    return this.http.delete(`${this.apiUrl}/delete-event/${event.id}`, { headers, withCredentials: true });
   }
 }

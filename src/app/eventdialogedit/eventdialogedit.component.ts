@@ -69,8 +69,9 @@ export class EventdialogeditComponent {
     }
   }
 
-  deleteEvent(): void {
-    this.eventService.deleteEvent(this.eventsE.id);
+  deleteEvent(eventsE: any): void {
+    this.eventService.deleteEvent(this.eventsE);
   }
+  
 
 }
