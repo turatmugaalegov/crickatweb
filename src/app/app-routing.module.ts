@@ -8,6 +8,7 @@ import { EventaddComponent } from './eventadd/eventadd.component';
 import { EventeditComponent } from './eventedit/eventedit.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ShowcredComponent } from './showcred/showcred.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:'eventadd',component:EventaddComponent},
   {path:'eventedit',component:EventeditComponent},
   {path:'userlist',component:UserlistComponent},
-  {path:'logout',component:LogoutComponent}
+  {path:'logout',component:LogoutComponent},
+  {path:'showcred',component:ShowcredComponent}
 
 ];
 

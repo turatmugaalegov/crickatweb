@@ -56,5 +56,17 @@ export class UserService {
     return this.isloggedin;
   }
 
+  getUserData(): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token,
+      });
+      return this.http.get<any>(`${this.apiUrl}/users/all`, { headers: headers });
+    } else {
+      return new Observable(); // Handle this case accordingly
+    }
+  }
     
 }
