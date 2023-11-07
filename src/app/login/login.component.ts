@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.userService.logout();
+    localStorage.clear();
    }
 
   login(): void {
