@@ -25,6 +25,7 @@
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let element">
             <a (click)="UpdateEvent(element)" mat-raised-button color="primary">Update</a>
+            <button (click)="deleteEvent(element)" mat-raised-button color="warn">Delete</button>
         </td>
       </ng-container>
   

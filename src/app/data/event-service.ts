@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class EventService {
-  private apiUrl = 'https://dry-caverns-85169-185a985df7fb.herokuapp.com/api/v1.0'; 
+  private apiUrl = 'https://dry-caverns-85169-185a985df7fb.herokuapp.com/api/v1.0';
 
   events: Event[] = [];
 
@@ -23,16 +23,16 @@ export class EventService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token // Include the token in the Authorization header
     });
-    return this.http.post<any>(`${this.apiUrl}/events/create`, { name, date, type, ageRating, ticketPrice, location}, { headers: headers, withCredentials: true });
+    return this.http.post<any>(`${this.apiUrl}/events/create`, { name, date, type, ageRating, ticketPrice, location }, { headers: headers, withCredentials: true });
   }
 
-  updateEvent(eventId: string, updatedEvent: any) {
+  updateEvent(updatedEvent: any, eventId: string) {
     const token = localStorage.getItem('token'); // Retrieve the stored token
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token // Include the token in the Authorization header
     });
-  
+
     // Führe eine PUT-Anfrage aus, um das Event zu aktualisieren
     return this.http.patch<any>(`${this.apiUrl}/events/edit/${eventId}`, updatedEvent, { headers: headers, withCredentials: true });
   }
@@ -72,13 +72,13 @@ export class EventService {
     return this.http.get(`${this.apiUrl}/events/myevents`, { headers: headers });
   }
 
-  deleteEvent(event: any): Observable<any> {
+  deleteEvent(eventId: string) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token
     });
-
-    return this.http.delete(`${this.apiUrl}/events/delete/${event.id}`, { headers, withCredentials: true });
+  
+    return this.http.delete<any>(`${this.apiUrl}/events/delete/${eventId}`, { headers, withCredentials: true });
   }
 }

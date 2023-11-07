@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { EventService } from '../data/event-service';
 import { EventdialogeditComponent } from '../eventdialogedit/eventdialogedit.component';
 import { DialogService } from '../data/dialog-service.service';
+import { EventdeleteComponent } from '../eventdelete/eventdelete.component';
 
 @Component({
   selector: 'app-eventedit',
@@ -45,7 +46,8 @@ export class EventeditComponent {
       exitAnimationDuration:'400ms',
       width:'50%',
       data:{
-        event: element
+        event: element,
+        eventId: element.id
       }
     })
     popup.afterClosed().subscribe(res=>{
@@ -63,6 +65,35 @@ export class EventeditComponent {
     });
 
   }
+
+  deleteEvent(element: any): void {
+    const popup = this.dialog.open(EventdeleteComponent, {
+      data: {
+        event: element,
+        eventId: element.id // Pass the event ID to the dialog
+      }
+    });
+  
+    popup.afterClosed().subscribe((result) => {
+      if (result === 'delete') {
+        // Call your delete event service method here, using result.eventId
+        this.eventService.deleteEvent(element.id).subscribe(
+          (response) => {
+            // Handle the successful response here
+            console.log(response);
+
+            this.eventService.getEventsForUser().subscribe((events: any[]) => {
+              this.dataSource.data = events;
+            });
+          },
+          (error) => {
+            // Handle error here
+            console.error(error);
+          }
+        );
+      }
+    });
+  }  
 
   onPageChange(event: any): void {
     // Update the data source based on the page event

@@ -22,15 +22,17 @@ export class EventdialogeditComponent {
 
   constructor(
     private eventService: EventService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private fb: FormBuilder
-  ){   this.addEventForm = this.fb.group({
-    name: [data.event.name, Validators.required],
-    date: [data.event.date, Validators.required],
-    type: [data.event.type, Validators.required],
-    ageRating: [data.event.ageRating, Validators.required],
-    ticketPrice: [data.event.ticketPrice, Validators.required],
-    location: [data.event.location, Validators.required],
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.addEventForm = this.fb.group({
+      name: [data.event.name, Validators.required],
+      date: [data.event.date, Validators.required],
+      type: [data.event.type, Validators.required],
+      ageRating: [data.event.ageRating, Validators.required],
+      ticketPrice: [data.event.ticketPrice, Validators.required],
+      location: [data.event.location, Validators.required],
+      eventId: data.eventId // Access the event ID here
     });
   }
 
