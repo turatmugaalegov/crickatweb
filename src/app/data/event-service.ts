@@ -18,22 +18,21 @@ export class EventService {
 
 
   createEvent(name: string, date: string, type: string, ageRating: String, ticketPrice: number, location: string) {
-    const token = localStorage.getItem('token'); // Retrieve the stored token
+    const token = localStorage.getItem('token'); 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token // Include the token in the Authorization header
+      'Authorization': 'Bearer ' + token
     });
     return this.http.post<any>(`${this.apiUrl}/events/create`, { name, date, type, ageRating, ticketPrice, location }, { headers: headers, withCredentials: true });
   }
 
   updateEvent(updatedEvent: any, eventId: string) {
-    const token = localStorage.getItem('token'); // Retrieve the stored token
+    const token = localStorage.getItem('token'); 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token // Include the token in the Authorization header
+      'Authorization': 'Bearer ' + token 
     });
 
-    // Führe eine PUT-Anfrage aus, um das Event zu aktualisieren
     return this.http.patch<any>(`${this.apiUrl}/events/edit/${eventId}`, updatedEvent, { headers: headers, withCredentials: true });
   }
 
@@ -48,7 +47,7 @@ export class EventService {
       'Authorization': 'Bearer ' + token
     });
 
-    const body = { eventId: event }; // You can add any necessary data to the request body
+    const body = { eventId: event };
 
     return this.http.post(`${this.apiUrl}/events/togglefavorite/${event.id}`, body, { headers });
   }
@@ -67,7 +66,7 @@ export class EventService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token // Include the token in the Authorization header
+      'Authorization': 'Bearer ' + token
     });
     return this.http.get(`${this.apiUrl}/events/myevents`, { headers: headers });
   }

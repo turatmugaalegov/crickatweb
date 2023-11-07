@@ -29,21 +29,17 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.userService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(
         response => {
-          // Assuming the response token is directly accessible as `response.token`
           if (response && response.token) {
-            localStorage.setItem('token', response.token); // Store the token in local storage
+            localStorage.setItem('token', response.token);
             localStorage.setItem('role', response.role);
             this.userService.updateLoggedStatus();
             this.successMessage = 'Du bist jetzt eingeloggt!';
             this.router.navigate(['']);
-            // Further actions upon successful login, such as redirecting to another page
           } else {
-            // Handle cases where the response does not contain a token
             this.errorMessage = 'Login fehlgeschlagen. Bitte versuche es erneut.';
           }
         },
         error => {
-          // Handle HTTP errors
           const errorMessage = error.error.message || 'Ein unerwarteter Fehler ist aufgetreten.';
           this.errorMessage = errorMessage;
           console.error('Login error:', error);

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -20,18 +20,15 @@ export class EventeditComponent {
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  constructor(private eventService: EventService, public dialog: MatDialog, private dialogService: DialogService) { }
+  constructor(private cdr: ChangeDetectorRef, private eventService: EventService, public dialog: MatDialog, private dialogService: DialogService) { }
 
   ngOnInit() {
 
     this.eventService.getEventsForUser().subscribe({
       next: (events: any[]) => {
         this.dataSource = new MatTableDataSource(events);
-        // If you are setting paginator and sort in ngOnInit, then it may not be available at this time.
-        // You may have to use ngAfterViewInit or set a timeout to wait for the view to be initialized.
       },
       error: (error: any) => {
-        // Handle errors here
         console.error('Ein fehler ist aufgetreten!', error);
       }
     });
@@ -54,11 +51,8 @@ export class EventeditComponent {
       this.eventService.getEventsForUser().subscribe({
         next: (events: any[]) => {
           this.dataSource = new MatTableDataSource(events);
-          // If you are setting paginator and sort in ngOnInit, then it may not be available at this time.
-          // You may have to use ngAfterViewInit or set a timeout to wait for the view to be initialized.
-        },
+          },
         error: (error: any) => {
-          // Handle errors here
           console.error('There was an error!', error);
         }
       });
@@ -70,20 +64,17 @@ export class EventeditComponent {
     const popup = this.dialog.open(EventdeleteComponent, {
       data: {
         event: element,
-        eventId: element.id // Pass the event ID to the dialog
+        eventId: element.id
       }
     });
   
     popup.afterClosed().subscribe((result) => {
       if (result === 'delete') {
-        // Call your delete event service method here, using result.eventId
         this.eventService.deleteEvent(element.id).subscribe(
           (response) => {
-            // Handle the successful response here
             console.log(response);
           },
           (error) => {
-            // Handle error here
             console.error(error);
           }
         );
@@ -92,7 +83,6 @@ export class EventeditComponent {
   }  
 
   onPageChange(event: any): void {
-    // Update the data source based on the page event
     this.dataSource.paginator = this.paginator;
   }
 }

@@ -13,7 +13,7 @@ export class EventdeleteComponent {
   ) {}
 
   confirmDelete(): void {
-    const eventId = this.data.eventId; // Access the event ID from the data
+    const eventId = this.data.eventId;
 
     if (eventId) {
       this.dialogRef.close('delete');

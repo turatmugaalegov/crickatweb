@@ -6,7 +6,6 @@ const httpOptions = {
   withCredentials: true,
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    // ... other headers if needed ...
   })
 };
 
@@ -33,7 +32,7 @@ export class UserService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token // Include the token in the Authorization header
+      'Authorization': 'Bearer ' + token
     });
     return this.http.post<any>(`${this.apiUrl}/auth/logout`, {}, { headers: headers, withCredentials: true });
   }
@@ -65,7 +64,7 @@ export class UserService {
       });
       return this.http.get<any>(`${this.apiUrl}/users/getuser`, { headers: headers });
     } else {
-      return new Observable(); // Handle this case accordingly
+      return new Observable();
     }
   }
     

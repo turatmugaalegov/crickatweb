@@ -59,10 +59,8 @@ export class EventlistComponent implements OnInit {
     this.eventService.getFavoriteEvents().subscribe({
       next: (events: any[]) => {
         this.dataSource = new MatTableDataSource(events);
-        // Set up paginator and sort if needed.
       },
       error: (error: any) => {
-        // Handle errors here
         console.error('Ein fehler ist aufgetreten!', error);
       }
     });
@@ -70,10 +68,8 @@ export class EventlistComponent implements OnInit {
     this.eventService.getEvents().subscribe({
       next: (events: any[]) => {
         this.dataSource = new MatTableDataSource(events);
-        // Set up paginator and sort if needed.
       },
       error: (error: any) => {
-        // Handle errors here
         console.error('Ein fehler ist aufgetreten!', error);
       }
     });
@@ -83,8 +79,8 @@ export class EventlistComponent implements OnInit {
 
   toggleFavorite(event: any): void {
     this.eventService.toggleFavorite(event).subscribe(() => {
-      event.isFavorite = !event.isFavorite; // Toggle the favorite status locally
-      this.fetchEvents(); // Fetch the updated list of events
+      event.isFavorite = !event.isFavorite; 
+      this.fetchEvents(); 
     });
   }
 
@@ -93,7 +89,6 @@ export class EventlistComponent implements OnInit {
   }
 
   onPageChange(event: any): void {
-    // Update the data source based on the page event
     this.dataSource.paginator = this.paginator;
   }
 

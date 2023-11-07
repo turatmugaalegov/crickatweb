@@ -32,7 +32,7 @@ export class EventdialogeditComponent {
       ageRating: [data.event.ageRating, Validators.required],
       ticketPrice: [data.event.ticketPrice, Validators.required],
       location: [data.event.location, Validators.required],
-      eventId: data.eventId // Access the event ID here
+      eventId: data.eventId
     });
   }
 
@@ -44,26 +44,22 @@ export class EventdialogeditComponent {
 
   updateEvent(): void {
     if (this.addEventForm.valid) {
-      // Create the event object to send to the service including the id
       const eventToUpdate = {
         ...this.addEventForm.value,
-        id: this.data.event.id  // Get the id from the data passed to the dialog
+        id: this.data.event.id 
       };
   
       this.eventService.updateEvent(eventToUpdate, eventToUpdate.id).subscribe(
         response => {
-          // Handle the successful response here
           console.log(response);
           this.successMessage = 'Event erfolgreich aktualisiert!';
         },
         error => {
-          // Handle error here
           console.error(error);
           this.errorMessage = 'Aktualisierung des Events fehlgeschlagen. Bitte versuche es erneut.';
         }
       );
     } else {
-      // Handle form validation error
       console.error('Form is invalid');
     }
   }
@@ -74,7 +70,6 @@ export class EventdialogeditComponent {
     if (selectedDate) {
       this.addEventForm.controls['date'].setValue(selectedDate);
     } else {
-      // Hier können Sie einen Fehler behandeln oder eine Meldung anzeigen, wenn kein Datum ausgewählt wurde.
     }
   }
 

@@ -7,7 +7,7 @@ import { UserService } from '../data/user-service';
   styleUrls: ['./showcred.component.css']
 })
 export class ShowcredComponent implements OnInit {
-  user: any; // Define a property to hold the user data
+  user: any;
 
   constructor(private userService: UserService) { }
 
@@ -17,7 +17,6 @@ export class ShowcredComponent implements OnInit {
         this.user = userData;
       },
       (error) => {
-        // Handle errors (e.g., token missing or API request failed)
       }
     );
   }

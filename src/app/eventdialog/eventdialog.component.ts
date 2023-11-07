@@ -9,10 +9,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class EventdialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
-  eventInfo: any[] = []; // Hier wird die Liste der Event-Informationen gespeichert
+  eventInfo: any[] = [];
 
   ngOnInit() {
-    // Erstelle die Liste der Event-Informationen
     this.eventInfo = [
       { label: 'Event', value: this.data.name },
       { label: 'Datum', value: this.data.date },
