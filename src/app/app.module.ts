@@ -26,6 +26,7 @@ import { EventdialogeditComponent } from './eventdialogedit/eventdialogedit.comp
 import { FormsModule } from '@angular/forms';
 import { ShowcredComponent } from './showcred/showcred.component';
 import { EventdeleteComponent } from './eventdelete/eventdelete.component';
+import { UserEditDialogComponent } from './user-edit-dialog/user-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { EventdeleteComponent } from './eventdelete/eventdelete.component';
     LogoutComponent,
     EventdialogeditComponent,
     ShowcredComponent,
-    EventdeleteComponent
+    EventdeleteComponent,
+    UserEditDialogComponent
   ],
   imports: [
     BrowserModule,

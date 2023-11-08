@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Bearbeiten</h2>
+<mat-dialog-content>
+  <form #editForm="ngForm">
+    <mat-form-field>
+      <input matInput placeholder="Benutzername" name="username" [(ngModel)]="data.username" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Name" name="name" [(ngModel)]="data.name" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="E-Mail" name="email" [(ngModel)]="data.email" required>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Abbrechen</button>
+  <button mat-button [mat-dialog-close]="data" [disabled]="!editForm.valid">Speichern</button>
+</mat-dialog-actions>
