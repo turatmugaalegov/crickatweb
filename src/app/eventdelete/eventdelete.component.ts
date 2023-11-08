@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eventdelete',
@@ -8,6 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class EventdeleteComponent {
   constructor(
+    private router: Router,
     public dialogRef: MatDialogRef<EventdeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}

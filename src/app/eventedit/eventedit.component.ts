@@ -7,6 +7,7 @@ import { EventService } from '../data/event-service';
 import { EventdialogeditComponent } from '../eventdialogedit/eventdialogedit.component';
 import { DialogService } from '../data/dialog-service.service';
 import { EventdeleteComponent } from '../eventdelete/eventdelete.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eventedit',
@@ -20,7 +21,7 @@ export class EventeditComponent {
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  constructor(private cdr: ChangeDetectorRef, private eventService: EventService, public dialog: MatDialog, private dialogService: DialogService) { }
+  constructor(private router: Router,private cdr: ChangeDetectorRef, private eventService: EventService, public dialog: MatDialog, private dialogService: DialogService) { }
 
   ngOnInit() {
 
@@ -69,6 +70,7 @@ export class EventeditComponent {
     });
   
     popup.afterClosed().subscribe((result) => {
+      
       if (result === 'delete') {
         this.eventService.deleteEvent(element.id).subscribe(
           (response) => {
@@ -84,5 +86,12 @@ export class EventeditComponent {
 
   onPageChange(event: any): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  refreshCurrentPage(): void {
+    const currentUrl = this.router.url; // Aktuelle URL ermitteln
+    this.router.navigate(['/showcred'], { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]); // Zur aktuellen Seite zurückkehren
+    });
   }
 }

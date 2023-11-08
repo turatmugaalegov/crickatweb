@@ -71,5 +71,25 @@ export class UserService {
   getAllUsers() {
     return this.http.get(this.apiUrl + '/users/all');
   }
+
+  updateUser(updatedUser: any, userId: string) {
+    const token = localStorage.getItem('token'); 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token 
+    });
+
+    return this.http.patch<any>(`${this.apiUrl}/users/update/${userId}`, updatedUser, { headers: headers, withCredentials: true });
+  }
+
+  deleteUser(userId: string) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+  
+    return this.http.delete<any>(`${this.apiUrl}/users/delete/${userId}`, { headers, withCredentials: true });
+  }
     
 }

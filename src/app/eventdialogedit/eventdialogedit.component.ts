@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { EventService } from '../data/event-service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -23,7 +23,7 @@ export class EventdialogeditComponent {
   constructor(
     private eventService: EventService,
     private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<EventdialogeditComponent>
   ) {
     this.addEventForm = this.fb.group({
       name: [data.event.name, Validators.required],
@@ -53,6 +53,7 @@ export class EventdialogeditComponent {
         response => {
           console.log(response);
           this.successMessage = 'Event erfolgreich aktualisiert!';
+          this.dialogRef.close();
         },
         error => {
           console.error(error);

@@ -37,16 +37,32 @@ export class UserlistComponent implements OnInit {
       width: '400px',
       data: user,
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Hier können Sie die Aktualisierung des Benutzers nach dem Schließen des Dialogs durchführen
         // result enthält die aktualisierten Benutzerdaten
+        this.userService.updateUser(result, result.userId).subscribe(
+          (updatedUser: any) => {
+            // Die Benutzerdaten wurden aktualisiert. Sie können die Anzeige aktualisieren oder andere Aktionen ausführen.
+          },
+          (error: any) => {
+            console.error('Fehler beim Aktualisieren des Benutzers', error);
+          }
+        );
       }
     });
   }
 
-  deleteUser(userId: number) {
+  deleteUser(userId: string) {
     // Implementieren Sie die Löschfunktion hier
+    this.userService.deleteUser(userId).subscribe(
+      (response: any) => {
+        // Der Benutzer wurde erfolgreich gelöscht. Sie können die Anzeige aktualisieren oder andere Aktionen ausführen.
+      },
+      (error: any) => {
+        console.error('Fehler beim Löschen des Benutzers', error);
+      }
+    );
   }
 }
