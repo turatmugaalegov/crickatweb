@@ -20,8 +20,8 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>Aktionen</mat-header-cell>
         <mat-cell *matCellDef="let user">
-          <button mat-button (click)="editUser(user)">Bearbeiten</button>
-          <button mat-button (click)="deleteUser(user.id)">Löschen</button>
+          <button mat-raised-button color="primary" (click)="editUser(user)">Bearbeiten</button>
+          <button mat-raised-button color="warn" (click)="deleteUser(user.id)">Löschen</button>
         </mat-cell>
       </ng-container>
   

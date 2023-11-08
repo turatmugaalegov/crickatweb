@@ -34,8 +34,8 @@ export class UserlistComponent implements OnInit {
 
   editUser(user: any) {
     const dialogRef = this.dialog.open(UserEditDialogComponent, {
-      width: '400px', // Hier können Sie die Breite des Dialogs anpassen
-      data: user, // Übergeben Sie die Benutzerdaten an den Dialog
+      width: '400px',
+      data: user,
     });
   
     dialogRef.afterClosed().subscribe(result => {
