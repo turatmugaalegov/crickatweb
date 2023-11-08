@@ -16,7 +16,7 @@ export class UserlistComponent implements OnInit {
   errorMessage: string = '';
 
   constructor(private userService: UserService, public dialog: MatDialog) {
-    this.dataSource = new MatTableDataSource<any>([]); // Hier setzen Sie den Typ auf 'any'
+    this.dataSource = new MatTableDataSource<any>([]); 
   }
 
   ngOnInit() {
@@ -42,11 +42,8 @@ export class UserlistComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Hier können Sie die Aktualisierung des Benutzers nach dem Schließen des Dialogs durchführen
-        // result enthält die aktualisierten Benutzerdaten
         this.userService.updateUser(result, result.id).subscribe(
           (updatedUser: any) => {
-            // Die Benutzerdaten wurden aktualisiert. Sie können die Anzeige aktualisieren oder andere Aktionen ausführen.
           },
           (error: any) => {
           }
@@ -56,11 +53,10 @@ export class UserlistComponent implements OnInit {
   }
 
   deleteUser(userId: string) {
-    // Implementieren Sie die Löschfunktion hier
+    // Kein DeleteConfirm nötig da nur Admins auf die Userlist kommen
     this.userService.deleteUser(userId).subscribe(
       (response: any) => {
         this.successMessage = 'Account erfolgreich gelöscht!';
-        // Der Benutzer wurde erfolgreich gelöscht. Sie können die Anzeige aktualisieren oder andere Aktionen ausführen.
       },
       (error: any) => {
         console.error('Fehler beim Löschen des Benutzers', error);

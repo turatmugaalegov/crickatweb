@@ -23,7 +23,7 @@ export class EventdialogComponent {
     ];
 
     this.geocodeAddress(this.data.location, (location) => {
-      this.initMap(location); // Initialisiere die Karte mit den Koordinaten
+      this.initMap(location);
     });
   }
 

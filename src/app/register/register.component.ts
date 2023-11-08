@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService) {
     this.registerForm = new FormGroup({
-      username: new FormControl('', Validators.required), // You can add more validators as needed
+      username: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)

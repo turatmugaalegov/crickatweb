@@ -92,9 +92,9 @@ export class EventeditComponent {
   }
 
   refreshCurrentPage(): void {
-    const currentUrl = this.router.url; // Aktuelle URL ermitteln
+    const currentUrl = this.router.url;
     this.router.navigate(['/showcred'], { skipLocationChange: true }).then(() => {
-      this.router.navigate([currentUrl]); // Zur aktuellen Seite zurückkehren
+      this.router.navigate([currentUrl]);
     });
   }
 }
