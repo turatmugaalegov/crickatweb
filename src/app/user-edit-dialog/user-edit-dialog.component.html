@@ -10,6 +10,10 @@
             <input matInput placeholder="E-Mail" name="email" [(ngModel)]="data.email" required>
         </mat-form-field>
         <mat-form-field>
+            <mat-label>ID</mat-label>
+            <input matInput placeholder="ID" name="id" [(ngModel)]="data.id" required>
+        </mat-form-field>
+        <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput placeholder="Name" name="name" [(ngModel)]="data.name" required>
         </mat-form-field>
@@ -24,5 +28,5 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-raised-button [mat-dialog-close]="data" color="primary" [disabled]="!editForm.valid">Speichern</button>
+    <button mat-button [mat-dialog-close]="data" color="primary" [disabled]="!editForm.valid">Speichern</button>
 </mat-dialog-actions>

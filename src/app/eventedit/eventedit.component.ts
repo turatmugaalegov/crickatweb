@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
 export class EventeditComponent {
   displayedColumns: string[] = ['name', 'id', 'date', 'location', 'action'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]); 
+  successMessage: string = '';
+  errorMessage: string = '';
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -75,6 +77,7 @@ export class EventeditComponent {
         this.eventService.deleteEvent(element.id).subscribe(
           (response) => {
             console.log(response);
+            this.successMessage = 'Event erfolgreich gelöscht!';
           },
           (error) => {
             console.error(error);
