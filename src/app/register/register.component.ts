@@ -30,6 +30,9 @@ export class RegisterComponent implements OnInit {
         response => {
           console.log(response);
           this.successMessage = 'Account erfolgreich erstellt ✅';
+          setTimeout(function () {
+            window.location.href = '/';
+          }, 1000);
         },
         error => {
           console.error(error);
