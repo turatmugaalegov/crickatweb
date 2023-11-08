@@ -1,8 +1,16 @@
+<mat-card>
+  <mat-card-header>
 <h2>Event Information</h2>
+</mat-card-header>
+<mat-card-content>
 <ul>
   <li *ngFor="let info of eventInfo">
     <strong>{{ info.label }}:</strong> {{ info.value }}
   </li>
 </ul>
 
-<div id="map"></div>
+<div class="map-container">
+  <div id="map" style="width: 80%; height: 100%;"></div>
+</div>
+</mat-card-content>
+</mat-card>
